@@ -1,0 +1,6 @@
+# Raw and derived data are never committed.
+# The folder structure is kept with .gitkeep files.
+data/*
+!data/raw/
+data/raw/*
+!data/raw/.gitkeep
