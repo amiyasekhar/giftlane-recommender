@@ -1,0 +1,20 @@
+Measure,PCA,Truncated SVD
+Estimator,"PCA(n_components=50, svd_solver='arpack', random_state=42)","TruncatedSVD(n_components=50, algorithm='randomized', n_iter=7, random_state=42)"
+Input,"same sparse A_log (5,471 x 3,687); columns centred implicitly by sklearn",sparse A_log as stored (no centring)
+Solver actually used,arpack,randomized
+"Fit time (s), median of 3",0.096,0.101
+"Peak memory during fit (MB, tracemalloc)",8.3,9.7
+"Stored factors (MB, float64: customer scores + product components)",3.66 (+0.03 for mean_),3.66
+Relative reconstruction error sqrt(1 - sum(sigma^2)/||A||_F^2),n/a (centred model),0.7892
+Energy kept (% of ||A||_F^2),n/a,37.71%
+Explained variance (% of centred variance),34.99%,n/a
+"hit@10 (1,931 eval customers)",20.66%,21.44%
+recall@10,2.26%,2.35%
+precision@10,3.09%,3.15%
+Best-seller baseline hit@10 (same for both),26.77%,26.77%
+Scoring note,customer rows NOT centred at scoring time (raw A_log rows @ P @ P.T),raw A_log rows @ P @ P.T
+Component 1: top 10 products by absolute weight,PACK OF 72 RETRO SPOT CAKE CASES; JUMBO BAG RED RETROSPOT; LUNCH BAG RED RETROSPOT; WHITE HANGING HEART T-LIGHT HOLDER; 60 TEATIME FAIRY CAKE CASES; LUNCH BAG SPACEBOY DESIGN; PACK OF 60 PINK PAISLEY CAKE CASES; LUNCH BAG PINK POLKADOT; LUNCH BAG CARS BLUE; LUNCH BAG  BLACK SKULL.,PACK OF 72 RETRO SPOT CAKE CASES; WHITE HANGING HEART T-LIGHT HOLDER; JUMBO BAG RED RETROSPOT; LUNCH BAG RED RETROSPOT; 60 TEATIME FAIRY CAKE CASES; ASSORTED COLOUR BIRD ORNAMENT; PACK OF 60 PINK PAISLEY CAKE CASES; LUNCH BAG SPACEBOY DESIGN; SET/20 RED SPOTTY PAPER NAPKINS; LUNCH BAG PINK POLKADOT
+Component 1: sign pattern,"mixed: 3,680 positive / 7 negative of 3,687",all one sign (positive)
+Component 1: share of variance / energy,9.30%,13.02%
+"cosine(component 1, normalised column means of A_log)",+0.9660,+0.9856
+"What component 1 represents, in words","Nearly the same direction (0.996 to SVD's). After centring it measures how much a customer differs from the average in volume, so heavy buyers sit at one end and light buyers at the other. Seven products have small negative weights.","Overall buying volume. It points almost exactly along the average customer's basket (cosine 0.99) and its top products are the best sellers. Every weight is positive, so customers who buy more of the popular range score higher."

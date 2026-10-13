@@ -1,0 +1,35 @@
+section,config,group,metric,value
+history_bucket,SVD k=100 V log,1-10,n_customers,94.0
+history_bucket,SVD k=100 V log,11-30,n_customers,298.0
+history_bucket,SVD k=100 V log,31-100,n_customers,729.0
+history_bucket,SVD k=100 V log,101+,n_customers,810.0
+history_bucket,best-seller baseline,1-10,n_customers,94.0
+history_bucket,best-seller baseline,11-30,n_customers,298.0
+history_bucket,best-seller baseline,31-100,n_customers,729.0
+history_bucket,best-seller baseline,101+,n_customers,810.0
+history_bucket,SVD k=100 V log,1-10,hit@10,31.914893617021278
+history_bucket,SVD k=100 V log,11-30,hit@10,25.16778523489933
+history_bucket,SVD k=100 V log,31-100,hit@10,24.142661179698216
+history_bucket,SVD k=100 V log,101+,hit@10,19.38271604938272
+history_bucket,best-seller baseline,1-10,hit@10,22.340425531914892
+history_bucket,best-seller baseline,11-30,hit@10,29.53020134228188
+history_bucket,best-seller baseline,31-100,hit@10,27.160493827160494
+history_bucket,best-seller baseline,101+,hit@10,25.925925925925924
+history_bucket,SVD k=100 V log,1-10,recall@10,10.858096768158202
+history_bucket,SVD k=100 V log,11-30,recall@10,2.833326828373946
+history_bucket,SVD k=100 V log,31-100,recall@10,2.467033469068102
+history_bucket,SVD k=100 V log,101+,recall@10,1.2974727629151444
+history_bucket,best-seller baseline,1-10,recall@10,2.3966071850980692
+history_bucket,best-seller baseline,11-30,recall@10,2.564986873324341
+history_bucket,best-seller baseline,31-100,recall@10,1.9274692709951544
+history_bucket,best-seller baseline,101+,recall@10,1.1890656641724318
+rare_product_hits,SVD k=100 V log,n_customers 10-20,total_hits,658.0
+rare_product_hits,best-seller baseline,n_customers 10-20,total_hits,699.0
+rare_product_hits,SVD k=100 V log,n_customers 10-20,hits_on_products_with_10-20_customers,7.0
+rare_product_hits,best-seller baseline,n_customers 10-20,hits_on_products_with_10-20_customers,0.0
+rare_product_hits,SVD k=100 V log,n_customers 10-20,share_of_hits_pct,1.0638297872340425
+rare_product_hits,best-seller baseline,n_customers 10-20,share_of_hits_pct,0.0
+rare_product_hits,SVD k=100 V log,n_customers 10-20,share_of_recommendations_in_band_pct,6.261004660797514
+rare_product_hits,best-seller baseline,n_customers 10-20,share_of_recommendations_in_band_pct,0.0
+rare_product_hits,SVD k=100 V log,n_customers 10-20,share_of_in_matrix_targets_in_band_pct,3.951293352922844
+rare_product_hits,best-seller baseline,n_customers 10-20,share_of_in_matrix_targets_in_band_pct,3.951293352922844
