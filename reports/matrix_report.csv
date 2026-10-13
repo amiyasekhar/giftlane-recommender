@@ -1,0 +1,18 @@
+metric,value
+matrix,A_log
+rows (customers),5471
+cols (products),3687
+nnz,413706
+sparsity_pct,97.94906466658506
+dense_memory_mb,161.372616
+sparse_memory_mb,4.98636
+compression_ratio_dense_over_sparse,32.362808942795944
+value_min,0.6931471805599453
+value_median,1.9459101490553132
+value_max,11.214735039333107
+nnz_per_row_min (products per customer),1
+nnz_per_row_median,41.0
+nnz_per_row_max,2255
+nnz_per_col_min (customers per product),10
+nnz_per_col_median,66.0
+nnz_per_col_max,1422
