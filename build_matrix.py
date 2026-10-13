@@ -25,12 +25,17 @@ import sys
 import time
 from pathlib import Path
 
-import numpy as np
-import pandas as pd
-
 ROOT = Path(__file__).resolve().parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
+
+# Fail fast BEFORE any third-party import: must be the giftlane env with pandas 3.0.6.
+from src.env_check import check_env  # noqa: E402
+
+check_env()
+
+import numpy as np  # noqa: E402
+import pandas as pd  # noqa: E402
 
 from src import build_matrix as bm  # noqa: E402
 from src import clean as cl  # noqa: E402
