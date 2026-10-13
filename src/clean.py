@@ -33,8 +33,13 @@ STANDARD_CODE = re.compile(r"^\d{5}[A-Z]*$")
 
 # Non-product codes (fees, postage, adjustments, vouchers, test rows) to drop in rule 6.
 NON_PRODUCT_CODES = frozenset(
-    {"POST", "DOT", "M", "D", "S", "B", "C2", "BANK CHARGES", "ADJUST", "AMAZONFEE", "CRUK", "TEST001"}
+    {
+        "POST", "DOT", "M", "D", "S", "B", "C2", "BANK CHARGES", "ADJUST", "ADJUST2",
+        "AMAZONFEE", "CRUK", "TEST001", "TEST002",
+    }
 )
+# SP1002 ("KID'S CHALKBOARD/EASEL") is a real product and is deliberately kept; the DE4
+# popularity filter (training data only) decides whether it survives.
 NON_PRODUCT_PREFIXES = ("GIFT_",)
 
 LOG_COLUMNS = ["step", "rule", "rows_before", "rows_removed", "rows_after", "reason"]
