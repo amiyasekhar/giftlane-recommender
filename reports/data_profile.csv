@@ -1,0 +1,9 @@
+n_rows,column,dtype,missing,pct_missing,unique
+1067371,Invoice,object,0,0.0,53628
+1067371,StockCode,object,0,0.0,5305
+1067371,Description,object,4382,0.411,5698
+1067371,Quantity,int64,0,0.0,1057
+1067371,InvoiceDate,datetime64[us],0,0.0,47635
+1067371,Price,float64,0,0.0,2807
+1067371,Customer ID,float64,243007,22.767,5942
+1067371,Country,str,0,0.0,43
