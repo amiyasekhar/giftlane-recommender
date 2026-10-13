@@ -1,0 +1,9 @@
+step,rule,rows_before,rows_removed,rows_after,reason
+0,0 normalise types,1067371,0,1067371,StockCode -> str/strip/upper; Invoice -> str/strip; Description -> str (NaN kept); Customer ID left as float64. No rows removed.
+1,1 cross-sheet overlap,1067371,22523,1044848,Dropped rows of 'Year 2010-2011' with InvoiceDate <= 2010-12-09 20:01:00 (max of 'Year 2009-2010'); DE1 showed every row in that window is an exact copy of a row in the earlier sheet.
+2,2 exact duplicates,1044848,11812,1033036,Rows identical in every column (keep first occurrence); same line repeated inside one invoice is an export artefact.
+3,3 cancellations,1033036,19104,1013932,"Invoice starts with 'C' (8,292 distinct cancellation invoices). Removed without netting against the original purchase."
+4,4 quantity <= 0,1013932,3393,1010539,"Non-positive quantity outside cancellation invoices (stock adjustments / damages). 3,393 such rows were NOT on a 'C' invoice before rule 3 (DE1 counted 3,457 on the raw data before overlap/duplicate removal)."
+5,5 price <= 0,1010539,2626,1007913,"Zero price (2,621 rows: free items / missing price) or negative price (5 rows); not a real purchase signal."
+6,6 non-product stockcodes,1007913,4552,1003361,"Postage, fees, manual/adjustment lines, bank charges, commission, vouchers and test rows: ['ADJUST', 'AMAZONFEE', 'B', 'BANK CHARGES', 'C2', 'D', 'DOT', 'GIFT_0001_10', 'GIFT_0001_20', 'GIFT_0001_30', 'GIFT_0001_40', 'GIFT_0001_50', 'GIFT_0001_70', 'GIFT_0001_80', 'M', 'POST', 'S', 'TEST001']. DCGS* codes and PADS kept (real products)."
+7,7 missing customer id,1003361,226761,776600,Rows without a customer cannot be placed in a customer x product matrix. Customer ID then cast to int64.
