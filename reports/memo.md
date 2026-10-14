@@ -40,7 +40,7 @@ Test: the last two months of data (9 October to 9 December 2011), 1,931 returnin
 
 ## 7. Customer groups for marketing
 
-Five groups from the same patterns (map: `reports/figures/ml6_map_k5.png`). They describe buying tendencies, not hard boundaries.
+Five groups from the same patterns (map: `reports/figures/ml6_map_k5_simple.png`). They describe buying tendencies, not hard boundaries.
 
 - Occasional small buyers, 29.7%: few products, low spend, no distinctive items.
 - Home décor & hearts, 23.9%: hanging hearts, zinc and ivory decorations, T-light holders.
