@@ -173,7 +173,11 @@ def signature_products(
     return pd.DataFrame(rows)
 
 
-def segment_summary(labels: np.ndarray, stats: pd.DataFrame, n_countries: int = N_COUNTRIES) -> pd.DataFrame:
+def segment_summary(
+    labels: np.ndarray, stats: pd.DataFrame, n_countries: int = N_COUNTRIES, names: dict[int, str] | None = None
+) -> pd.DataFrame:
+    """`names` maps segment number -> author-chosen name; segments without a name get an empty string."""
+    names = names or {}
     rows = []
     n = len(labels)
     for seg in np.unique(labels):
@@ -183,7 +187,7 @@ def segment_summary(labels: np.ndarray, stats: pd.DataFrame, n_countries: int = 
         rows.append(
             {
                 "segment": int(seg),
-                "segment_name": "",
+                "segment_name": names.get(int(seg), ""),
                 "n_customers": int(m.sum()),
                 "pct_customers": 100 * m.sum() / n,
                 "median_products": float(s["n_products"].median()),
@@ -196,10 +200,11 @@ def segment_summary(labels: np.ndarray, stats: pd.DataFrame, n_countries: int = 
 
 
 def segment_profiles(
-    labels: np.ndarray, stats: pd.DataFrame, A: sp.csr_matrix, product_index: pd.DataFrame
+    labels: np.ndarray, stats: pd.DataFrame, A: sp.csr_matrix, product_index: pd.DataFrame,
+    names: dict[int, str] | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """(summary, signature, long) where `long` is the single-table form saved to CSV."""
-    summary = segment_summary(labels, stats)
+    summary = segment_summary(labels, stats, names=names)
     sig = signature_products(A, labels, product_index)
     s_long = summary.assign(section="summary")
     g_long = sig.assign(section="signature_product")
@@ -261,11 +266,15 @@ def centroids_2d(Y: np.ndarray, labels: np.ndarray) -> dict[int, np.ndarray]:
     return {int(s): Y[labels == s].mean(axis=0) for s in np.unique(labels)}
 
 
-def spread_labels(points: dict[int, np.ndarray], Y: np.ndarray, min_frac: float = 0.07) -> dict[int, np.ndarray]:
+def spread_labels(
+    points: dict[int, np.ndarray], Y: np.ndarray, min_frac: float = 0.07, label_chars: int = 9
+) -> dict[int, np.ndarray]:
     """Nudge label positions apart vertically when two centroids sit closer than `min_frac` of the
-    axis ranges in both x and y, so text boxes do not overlap. The data points are not moved."""
+    y-range and closer than a text-width-sized fraction of the x-range (scaled by `label_chars`, the
+    longest label), so text boxes do not overlap. The data points are not moved."""
     xr = np.ptp(Y[:, 0]) or 1.0
     yr = np.ptp(Y[:, 1]) or 1.0
+    x_frac = min_frac * 2.2 * max(1.0, label_chars / 9)
     keys = sorted(points, key=lambda s: points[s][1])
     pos = {s: points[s].astype(float).copy() for s in keys}
     for _ in range(10):
@@ -274,7 +283,7 @@ def spread_labels(points: dict[int, np.ndarray], Y: np.ndarray, min_frac: float 
             for b in keys[i + 1:]:
                 dx = abs(pos[a][0] - pos[b][0]) / xr
                 dy = abs(pos[a][1] - pos[b][1]) / yr
-                if dx < min_frac * 2.2 and dy < min_frac:
+                if dx < x_frac and dy < min_frac:
                     shift = (min_frac - dy) / 2 * yr + 1e-9
                     lo, hi = (a, b) if pos[a][1] <= pos[b][1] else (b, a)
                     pos[lo][1] -= shift
