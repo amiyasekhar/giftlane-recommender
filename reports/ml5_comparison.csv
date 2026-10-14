@@ -1,9 +1,11 @@
 Measure,PCA,Truncated SVD
+k used,50,50
 Estimator,"PCA(n_components=50, svd_solver='arpack', random_state=42)","TruncatedSVD(n_components=50, algorithm='randomized', n_iter=7, random_state=42)"
 Input,"same sparse A_log (5,471 x 3,687); columns centred implicitly by sklearn",sparse A_log as stored (no centring)
 Solver actually used,arpack,randomized
-"Fit time (s), median of 3",0.096,0.101
+"Fit time (s), median of 3",0.095,0.103
 "Peak memory during fit (MB, tracemalloc)",8.3,9.7
+Memory note,tracemalloc lower bound (excludes ARPACK/LAPACK workspace),tracemalloc lower bound (excludes ARPACK/LAPACK workspace)
 "Stored factors (MB, float64: customer scores + product components)",3.66 (+0.03 for mean_),3.66
 Relative reconstruction error sqrt(1 - sum(sigma^2)/||A||_F^2),n/a (centred model),0.7892
 Energy kept (% of ||A||_F^2),n/a,37.71%
