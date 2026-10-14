@@ -1,7 +1,7 @@
 step,rule,rows_before,rows_removed,rows_after,reason
 0,0 normalise types,1067371,0,1067371,StockCode -> str/strip/upper; Invoice -> str/strip; Description -> str (NaN kept); Customer ID left as float64. No rows removed.
 1,1 cross-sheet overlap,1067371,22523,1044848,Dropped rows of 'Year 2010-2011' with InvoiceDate <= 2010-12-09 20:01:00 (max of 'Year 2009-2010'); DE1 showed every row in that window is an exact copy of a row in the earlier sheet.
-2,2 exact duplicates,1044848,11812,1033036,Rows identical in every column (keep first occurrence); same line repeated inside one invoice is an export artefact.
+2,2 exact duplicates,1044848,11812,1033036,"Rows identical in every column (keep first occurrence); likely export artefacts, and removing them has negligible effect on a log or binary purchase value."
 3,3 cancellations,1033036,19104,1013932,"Invoice starts with 'C' (8,292 distinct cancellation invoices). Removed without netting against the original purchase."
 4,4 quantity <= 0,1013932,3393,1010539,"Non-positive quantity outside cancellation invoices (stock adjustments / damages). 3,393 such rows were NOT on a 'C' invoice before rule 3 (DE1 counted 3,457 on the raw data before overlap/duplicate removal)."
 5,5 price <= 0,1010539,2626,1007913,"Zero price (2,621 rows: free items / missing price) or negative price (5 rows); not a real purchase signal."

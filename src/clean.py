@@ -182,7 +182,7 @@ def clean(
         "2 exact duplicates",
         before,
         len(df),
-        "Rows identical in every column (keep first occurrence); same line repeated inside one invoice is an export artefact.",
+        "Rows identical in every column (keep first occurrence); likely export artefacts, and removing them has negligible effect on a log or binary purchase value.",
     )
     say(f"[2] exact duplicates         : -{before - len(df):>8,} -> {len(df):,}")
 
