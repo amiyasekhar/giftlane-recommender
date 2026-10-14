@@ -29,8 +29,8 @@ Translated from Sarah's request (brief Section 1.4). Each is measured on data th
 | Target | Result | Met? |
 | --- | --- | --- |
 | Smaller | Factors 3.66 MB at k = 50 vs 161.4 MB dense (`reports/ml2_k_results.csv`, `reports/matrix_report.csv`) | Yes |
-| Fast | Whole nightly job (fit, item neighbours, score all 5,471 customers) about 0.5 s vs 60 s target (notebook 07) | Yes |
-| Better than best sellers | hit@10 21.4% vs baseline 26.8% (not met); recall@10 2.35% vs 1.74% (better); light buyers with 1-10 products: recall 10.9% vs 2.4% (`reports/ml4_results.csv`, `reports/ml4_breakdowns.csv`; the light-buyer breakdown was computed for the k = 100 variant) | No (hit@10), explained in `reports/memo.pdf` |
+| Fast | Whole nightly job (fit, item neighbours, score all 5,471 customers) about 0.4 s (k = 50, median of 3) vs 60 s target (notebook 07) | Yes |
+| Better than best sellers | hit@10 21.4% vs baseline 26.8% (not met); recall@10 2.35% vs 1.74% (better); light buyers with 1-10 products: recall 8.3% vs 2.4% (`reports/ml4_results.csv`, `reports/ml4_breakdowns.csv`) | No (hit@10), explained in `reports/memo.pdf` |
 | Usable map | 5 named segments, sizes 29.7 / 23.9 / 20.0 / 13.3 / 13.2%, no customer IDs (`reports/ml6_segments_k5.csv`, `reports/figures/ml6_map_k5.png`) | Yes |
 
 ## Setup (from a fresh clone)

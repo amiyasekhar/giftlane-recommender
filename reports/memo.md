@@ -28,7 +28,7 @@ Test: the last two months of data (9 October to 9 December 2011), 1,931 returnin
 | Share of each customer's new purchases caught by the 10 suggestions | 1.7% | 2.4% |
 
 - Best sellers win on "at least one right" because Q4 buying is dominated by popular Christmas stock that most customers pick up anyway.
-- The model is better for light buyers. For customers with 1 to 10 products in their history, it caught 10.9% of their new purchases against 2.4% for best sellers.
+- The model is better for light buyers. For customers with 1 to 10 products in their history, it caught 8.3% of their new purchases against 2.4% for best sellers.
 - The model's lists are personal: 97.6% of customers share no product between their model list and the best-seller list.
 - Product-page suggestions are coherent: Regency cakestand leads to Regency teacups, tea plates and teapot; red retrospot lunch bag leads to the other lunch bag designs.
 
